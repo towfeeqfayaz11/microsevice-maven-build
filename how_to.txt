@@ -1,2 +1,6 @@
 # http://localhost:8090/microservice-product-1/
 # http://localhost:8090/microservice-product-1/product/list
+
+ant       --> build.xml    (we manually need to install dependencies and place in project directories)   --> it can work even without sc directory
+maven     --> pom.xml      (takes care of the dependencies)    (maven also requires sc directory)
+gradle    --> build.gradle
