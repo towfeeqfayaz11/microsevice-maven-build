@@ -3,5 +3,9 @@
 
 # build automation tools
 ant       --> build.xml    (we manually need to install dependencies and place in project directories)   --> it can work even without src directory
+                           -> can work independent of application
+                           -> part of application automatic build+deploy
 maven     --> pom.xml      (takes care of the dependencies)    (maven also requires sc directory)
+                           -> can not work independent of application
+                           -> part of application development  + application automatic build+deploy
 gradle    --> build.gradle
