@@ -1,0 +1,2 @@
+# http://localhost:8090/microservice-product-1/
+# http://localhost:8090/microservice-product-1/product/list
