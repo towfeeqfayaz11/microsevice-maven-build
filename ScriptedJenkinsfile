@@ -1,0 +1,41 @@
+ pipeline {
+    agent any
+
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "maven3.5"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Get some code from a GitHub repository
+                 git branch: 'main',
+                  url: 'https://github.com/pbadhe34/Microservice-maven-App'
+               }
+            }
+            stage('Test') {
+            steps {
+                 // To run Maven on a Windows agent, use
+                  bat "mvn clean test -Dmaven.test.failure.ignore=true"
+                  junit '**/target/surefire-reports/TEST-*.xml'
+                 }
+           post {
+                // bat "mvn clean package"
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    //junit '**/target/surefire-reports/TEST-*.xml'
+                   // archiveArtifacts 'target/*.war'
+                    echo "Tests running successfully"
+                }
+              }
+            }
+           stage('Deploy') {
+            steps {
+                // To run Maven on a Windows agent, use -Dmaven.test.failure.ignore=true
+                 bat "mvn clean package -Dmaven.test.skip"
+                }
+            }
+        }
+}
